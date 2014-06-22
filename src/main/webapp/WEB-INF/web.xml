@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_5.xsd"
+	version="2.5">
+	<display-name>cc nexus</display-name>
+	<servlet>
+		<servlet-name>CcServlet</servlet-name>
+		<servlet-class>org.caofei.cc.servlet.CcServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CcServlet</servlet-name>
+		<url-pattern>*.cc</url-pattern>
+	</servlet-mapping>
+
+	<listener>
+		<listener-class>org.caofei.cc.servlet.CcSessionListener
+		</listener-class>
+	</listener>
+<!-- 	<session-config> -->
+<!-- 		<session-timeout>1</session-timeout> -->
+<!-- 	</session-config> -->
+</web-app>

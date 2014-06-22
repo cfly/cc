@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+  <appender name="stdout" class="org.apache.log4j.ConsoleAppender">
+    <layout class="org.apache.log4j.PatternLayout">
+      <!-- Print the date in ISO 8601 format -->
+      <param name="ConversionPattern" value="%d [%t] %-5p %c - %m%n"/>
+    </layout>
+  </appender>
+	<appender name="myFile" class="org.apache.log4j.RollingFileAppender">
+		<param name="File" value="/var/log/daoGen.log" /><!-- 设置日志输出文件名 -->
+		<!-- 设置是否在重新启动服务时，在原有日志的基础添加新日志 -->
+		<param name="Append" value="true" />
+<!--		<param name="MaxBackupIndex" value="10" />-->
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%p (%c:%L)- %m%n" />
+		</layout>
+	</appender>
+  <logger name="org.caofei">
+<!--     Print only messages of level warn or above in the package com.foo -->
+    <level value="info"/>
+    <appender-ref ref="stdout" />
+  </logger>
+  <logger name="org.springframework">
+    <!-- Print only messages of level warn or above in the package com.foo -->
+    <level value="info"/>
+    <appender-ref ref="stdout" />
+  </logger>
+  <logger name="java.sql">
+    <!-- Print only messages of level warn or above in the package com.foo -->
+    <level value="all"/>
+    <appender-ref ref="stdout" />
+  </logger>
+ <root>
+   <priority value ="off" />
+<!--    <appender-ref ref="stdout" /> -->
+ </root>
+</log4j:configuration>
