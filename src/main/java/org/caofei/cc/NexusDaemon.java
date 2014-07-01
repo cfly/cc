@@ -24,7 +24,7 @@ public class NexusDaemon extends Thread {
         while (true) {
             Cell cell1 = null;
             Cell cell2 = null;
-            for (;;) {
+            while (true) {
                 cell1 = cell1 != null
                         && cell1.getStatus() == Cell.Status.Connecting ? cell1
                         : CellQueue.take();
