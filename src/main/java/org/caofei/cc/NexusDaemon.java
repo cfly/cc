@@ -21,27 +21,27 @@ public class NexusDaemon extends Thread {
 
 	@Override
 	public void run() {
-		for (;;) {
-			Cell cell1 = null;
-			Cell cell2 = null;
-			for (;;) {
-				cell1 = cell1 != null
-						&& cell1.getStatus() == Cell.Status.Connecting ? cell1
-						: CellQueue.take();
-				cell2 = cell2 != null
-						&& cell1.getStatus() == Cell.Status.Connecting ? cell2
-						: CellQueue.take();
-				if (cell1.getStatus() == Cell.Status.Connecting
-						&& cell2.getStatus() == Cell.Status.Connecting) {
-					break;
-				}
-			}
-			Nexus nexus = NexusPool.borrowObject();
-			cell1.setNexus(nexus);
-			cell2.setNexus(nexus);
-			nexus.getCellsGroup().add(cell1);
-			nexus.getCellsGroup().add(cell2);
-			nexus.updateStatus();
-		}
-	}
+        while (true) {
+            Cell cell1 = null;
+            Cell cell2 = null;
+            for (;;) {
+                cell1 = cell1 != null
+                        && cell1.getStatus() == Cell.Status.Connecting ? cell1
+                        : CellQueue.take();
+                cell2 = cell2 != null
+                        && cell1.getStatus() == Cell.Status.Connecting ? cell2
+                        : CellQueue.take();
+                if (cell1.getStatus() == Cell.Status.Connecting
+                        && cell2.getStatus() == Cell.Status.Connecting) {
+                    break;
+                }
+            }
+            Nexus nexus = NexusPool.borrowObject();
+            cell1.setNexus(nexus);
+            cell2.setNexus(nexus);
+            nexus.getCellsGroup().add(cell1);
+            nexus.getCellsGroup().add(cell2);
+            nexus.updateStatus();
+        }
+    }
 }
