@@ -2,7 +2,6 @@
   <artifact type="exploded-war" name="cc:war exploded">
     <output-path>$PROJECT_DIR$/target/cc</output-path>
     <root id="root">
-      <element id="javaee-facet-resources" facet="cc/web/Web" />
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
           <element id="module-output" name="cc" />
@@ -17,6 +16,10 @@
           <element id="library" level="project" name="Maven: javax.ws.rs:javax.ws.rs-api:2.0" />
         </element>
       </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/target/cc/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="javaee-facet-resources" facet="cc/web/Web" />
     </root>
   </artifact>
 </component>
